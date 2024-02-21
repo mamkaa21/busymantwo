@@ -11,10 +11,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+           
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -22,31 +19,24 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Tasks}"
+        <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding Tasks}"
                   SelectedItem="{Binding SelectedTask}"
                   SelectionMode="Multiple">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="задача:"
+                    <GridViewColumn Width="200" Header="Задача:"
                         DisplayMemberBinding="{Binding Info}">
+                    </GridViewColumn>
+                    <GridViewColumn Header="Статус:"
+DisplayMemberBinding="{Binding Status}">
+                    </GridViewColumn>
+                    <GridViewColumn Header="Статус:"
+DisplayMemberBinding="{Binding Speed}">
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <!--<ListBox Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding NewTask}"
-                  SelectedItem="{Binding SelectedNewTask}">>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Info}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-
-        </ListBox>-->
-        <ComboBox Grid.Column="2" Grid.Row="1">
-            <ComboBoxItem Content="Ожидает"/>
-            <ComboBoxItem Content="В работе"/>
-        </ComboBox>
+        
         <Button Grid.Column="2" Grid.Row="7" Content="Выполнена" Margin="20 10 10 10" FontSize="24" Click="Vipilnenie" />
         <Button Grid.Column="1" Grid.Row="7" Content="Отменена" Margin="10 10 20 10" FontSize="24" Click="Otmenabut"/>
         <Button Grid.Column="4" Grid.Row="0" Content="Добавить" Margin="10 10 20 10" FontSize="24" Click="NewTask_Add"/>

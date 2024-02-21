@@ -21,13 +21,11 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Добавить задачу" HorizontalContentAlignment="Center" FontSize="26" VerticalAlignment="Center"/>
         <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2"
-                  DataContext="{Binding SelectedProducti}">
+                  DataContext="{Binding SelectedNewTask}">
             <TextBox Text="{Binding Info}"/>
         </GroupBox>
-        <ComboBox Grid.Column="2" Grid.Row="1" Margin="10 0 0 50">
-            <ComboBoxItem Content="Срочно"/>
-            <ComboBoxItem Content="Несрочно"/>
-        </ComboBox>
+        <ComboBox Grid.Column="2" ItemsSource="{Binding States}" SelectedItem="{Binding SelectedNewTask.Speed}" Grid.Row="1" Margin="10 0 0 50"/>
+
         <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Width="150" Height="58" Content="Сохранить" FontSize="24" Click="ButtonAdd"/>
     </Grid>
 </Window>

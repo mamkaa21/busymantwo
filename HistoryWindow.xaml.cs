@@ -23,6 +23,8 @@ namespace busymantwo
     /// </summary>
     public partial class HistoryWindow : Window
     {
+        public ObservableCollection<Task> Tasks { get; set; }
+
         public HistoryWindow()
         {
             InitializeComponent();

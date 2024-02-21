@@ -22,12 +22,11 @@ namespace busymantwo
     /// </summary>
     public partial class TaskWindow : Window, INotifyPropertyChanged
     {
-        private NewTask selectedNewTask;
+        private Task selectedNewTask;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ObservableCollection<NewTask> Taskes { get; set; }
-        public NewTask SelectedNewTask
+        public Task SelectedNewTask
         {
             get => selectedNewTask;
             set
@@ -41,25 +40,21 @@ namespace busymantwo
         public TaskWindow()
         {
             InitializeComponent();
-            
+            States = new List<string>(new string[] {"Срочно", "Пофиг" });
+            SelectedNewTask = new Task { Status = "Ожидает" };
+            DataContext = this;
         }
 
-        public class NewTask
-        {
-            public string InfoNew { get; set; } = " ";
-            public string SpeedNew { get; set; } = " ";
+        public List<string> States { get; set; }
 
-
-        }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
-            Taskes.Add(new NewTask());
+           Class1.Tasks.Add(SelectedNewTask);
             PropertyChanged?.Invoke(this,
                     new PropertyChangedEventArgs(nameof(SelectedNewTask)));
             MessageBox.Show("Добавлено в список задач");
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+           Close();
         }
     }
 }

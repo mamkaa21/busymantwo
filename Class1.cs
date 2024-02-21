@@ -9,7 +9,7 @@ namespace busymantwo
 {
     internal class Class1
     {
-        public static ObservableCollection<Task> Tasks { get; set; }
+        public static ObservableCollection<Task> Tasks { get; set; } = new ObservableCollection<Task>();
     }
 
     public class Task

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:busymantwo"
         mc:Ignorable="d"
-        Title="HistoryWindow" Height="450" Width="800">
+        Title="HistoryWindow" Height="450" Width="800" Background="LightCoral">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -20,16 +20,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="1" Grid.ColumnSpan="2" Content="История задач" HorizontalContentAlignment="Center" FontSize="26" VerticalAlignment="Center"/>
-        <ListBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding NewTask}"
-          SelectedItem="{Binding SelectedNewTask}">
+        <ListBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding Tasks}"
+          SelectedItem="{Binding SelectedTask}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <Label Content="{Binding Info}"/>
-                        <Label Content="{Binding Speed}"/>
+                        <Label Content="{Binding Status}"/>
+                        <TextBlock Text="{Binding DataEnd , StringFormat=dd MMMM yyyy, ConverterCulture='ru-RU'}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="100 0 100 30" Content="ОК" FontSize="40" Click="OK_Click" Background="Orange" Foreground="Blue"/>
     </Grid>
 </Window>

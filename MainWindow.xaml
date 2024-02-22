@@ -11,7 +11,9 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-           
+            <RowDefinition/>
+            <RowDefinition/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,18 +21,21 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding Tasks}"
+        <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" ItemsSource="{Binding Tasks}"
                   SelectedItem="{Binding SelectedTask}"
                   SelectionMode="Multiple">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" Header="Задача:"
+                    <GridViewColumn Width="150" Header="Задача:"
                         DisplayMemberBinding="{Binding Info}">
                     </GridViewColumn>
                     <GridViewColumn Header="Статус:"
-DisplayMemberBinding="{Binding Status}">
+                        DisplayMemberBinding="{Binding Status}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Статус:"
+                    <GridViewColumn Header="Дата создания:"
+                        DisplayMemberBinding="{Binding DataStart, StringFormat=dd MMMM yyyy, ConverterCulture='ru-RU'}">
+                    </GridViewColumn>
+                    <GridViewColumn Header="Срочность:"
 DisplayMemberBinding="{Binding Speed}">
                     </GridViewColumn>
                 </GridView>

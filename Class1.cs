@@ -15,10 +15,10 @@ namespace busymantwo
     public class Task
     {
         public string Info { get; set; } = " ";
-        public string DataStart { get; set; } = " ";
+        public DateTime DataStart { get; set; } = DateTime.Now;
         public string Speed { get; set; } = " ";
         public string Status { get; set; } = " ";
-        public string DataEnd { get; set; } = " ";
+        public DateTime? DataEnd { get; set; }
 
     }
 }

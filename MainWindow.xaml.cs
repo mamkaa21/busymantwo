@@ -28,7 +28,7 @@ namespace busymantwo
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ObservableCollection<Task> Tasks { get =>new ObservableCollection<Task>(Class1.Tasks.Where(s => s.Status == "Ожидает")); set => Class1.Tasks = value; }
+        public ObservableCollection<Task> Tasks { get; set; }
         public Task SelectedTask
         {
             get => selectedTask;
@@ -42,26 +42,28 @@ namespace busymantwo
         public MainWindow()
         {
             InitializeComponent();
-            //string fileName = "WeatherForecast.json";
-            //string jsonString = JsonSerializer.Serialize(Tasks);
-            //File.WriteAllText(fileName, jsonString);
 
-            //Console.WriteLine(File.ReadAllText(fileName));
             DataContext = this;
-            if (!File.Exists ("task.json"))
+            if (!File.Exists("task.json"))
                 Tasks = new ObservableCollection<Task>();
             else
                 using (FileStream fs = new FileStream("task.json", FileMode.OpenOrCreate))
                 {
                     Tasks = JsonSerializer.Deserialize<ObservableCollection<Task>>(fs);
                 }
+            ViewTasks();
         }
 
+        private void ViewTasks()
+        {
+            Tasks = new ObservableCollection<Task>(Class1.Tasks.Where(s => s.Status == "Ожидает" || s.Status == "В работе"));
+        }
 
         private void NewTask_Add(object sender, RoutedEventArgs e)
         {
             TaskWindow taskWindow = new TaskWindow();
             taskWindow.ShowDialog();
+            ViewTasks();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Tasks)));
         }
 
@@ -75,20 +77,21 @@ namespace busymantwo
         {
             if (SelectedTask != null)
                 MessageBox.Show("Обьект выполнен");
-            Tasks.Remove(SelectedTask);
-            PropertyChanged?.Invoke(this,
-                    new PropertyChangedEventArgs(nameof(SelectedTask)));
+            SelectedTask.Status = "Выполнена";
+            ViewTasks();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Tasks)));
             HistoryWindow historyWindow = new HistoryWindow();
             historyWindow.Show();
+
         }
 
         private void Otmenabut(object sender, RoutedEventArgs e)
         {
             if (SelectedTask != null)
                 MessageBox.Show("Обьект отменен");
-            Tasks.Remove(SelectedTask);
-            PropertyChanged?.Invoke(this,
-                    new PropertyChangedEventArgs(nameof(SelectedTask)));
+            SelectedTask.Status = "Отменен";
+            ViewTasks();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Tasks)));
             HistoryWindow historyWindow = new HistoryWindow();
             historyWindow.Show();
 

@@ -43,6 +43,7 @@ namespace busymantwo
             States = new List<string>(new string[] {"Срочно", "Пофиг" });
             SelectedNewTask = new Task { Status = "Ожидает" };
             DataContext = this;
+
         }
 
         public List<string> States { get; set; }
